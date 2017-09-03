@@ -7,7 +7,7 @@ using CoursesApi.Services;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/courses")]
     public class CoursesController : Controller
     {
         private readonly ICoursesService _coursesService;
@@ -17,37 +17,50 @@ namespace API.Controllers
             _coursesService = coursesService;
         }
 
-        // GET api/values
+        // GET api/courses
         [HttpGet]
+        [Route("")]
         public IActionResult GetCourses()
         {
             var courses = _coursesService.GetCourses();
             return Ok(courses);
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET api/courses/1
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetCourse(int id)
         {
-            return "value";
+            var course = _coursesService.GetCourses();
+            return Ok(course);
         }
 
-        // POST api/values
+        /*// POST api/values
         [HttpPost]
         public void Post([FromBody]string value)
         {
-        }
+        }*/
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
+        // PUT api/courses/1
+        [HttpPut]
+        [Route("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
+        // DELETE api/courses/1
+        [HttpDelete]
+        [Route("{id}")]
         public void Delete(int id)
         {
         }
+
+        // GET api/courses/1/students
+        [HttpGet]
+        [Route("{id}/students")]
+
+        // POST api/courses/1/students
+        [HttpPost]
+        [Route("{id}/students")]
     }
 }
